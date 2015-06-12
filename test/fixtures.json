@@ -77,6 +77,14 @@
     {
       "type": "?",
       "value": null
+    },
+    {
+      "type": ["String|Array"],
+      "value": ["hello", [1]]
+    },
+    {
+      "type": "Object|CustomType",
+      "custom": "CustomType"
     }
   ],
   "invalid": [
@@ -446,6 +454,16 @@
       "exception": "Expected ?, got String foobar",
       "type": "?",
       "value": "foobar"
+    },
+    {
+      "exception": "Expected String|Array, got Object \\[object Object\\]",
+      "type": "String|Array",
+      "value": {}
+    },
+    {
+      "exception": "Expected Object|Function, got CustomType \\[object Object\\]",
+      "type": "Object|Function",
+      "custom": "CustomType"
     }
   ]
 }
