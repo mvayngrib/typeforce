@@ -77,6 +77,22 @@
     {
       "type": "?",
       "value": null
+    },
+    {
+      "type": ["String|Array"],
+      "value": ["hello", [1]]
+    },
+    {
+      "type": "Object|CustomType",
+      "custom": "CustomType"
+    },
+    {
+      "type": [{ "a": "Number|Object" }],
+      "value": [{ "a": 1 }, { "a": {} }]
+    },
+    {
+      "type": [{ "a": "?Number|Object" }],
+      "value": [{ "a": 1 }, { "a": null }, { "a": {} }, {}]
     }
   ],
   "invalid": [
@@ -446,6 +462,36 @@
       "exception": "Expected ?, got String foobar",
       "type": "?",
       "value": "foobar"
+    },
+    {
+      "exception": "Expected String|Array, got Object \\[object Object\\]",
+      "type": "String|Array",
+      "value": {}
+    },
+    {
+      "exception": "Expected Number|Object, got String",
+      "type": [{ "a": "?Number|Object" }],
+      "value": ["blah"]
+    },
+    {
+      "exception": "Expected property \"a\" of type \"Number|String\", got Object \\[object Object\\]",
+      "type": [{ "a": "Number|String" }],
+      "value": [{ "a": {} }, { "a": null }]
+    },
+    {
+      "exception": "Expected property \"a\" of type \"Number|Array\", got  null",
+      "type": [{ "a": "Number|Array" }],
+      "value": [{ "a": null }]
+    },
+    {
+      "exception": "Expected Array|Function, got CustomType \\[object Object\\]",
+      "type": "Array|Function",
+      "custom": "CustomType"
+    },
+    {
+      "exception": "Expected CustomType|Function, got Object \\[object Object\\]",
+      "type": "CustomType|Function",
+      "value": {}
     }
   ]
 }
